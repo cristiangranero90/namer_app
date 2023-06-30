@@ -1,3 +1,5 @@
 # namer_app
 
-A new Flutter project.
+My first Flutter project for practice. From google codelabs!
+
+<img src="" width="600"/>
