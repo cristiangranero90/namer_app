@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = GeneratorPage();
         break;
       case 1:
-        page = Placeholder(); //It draws a rectangle in the page
+        page = FavoritesPage(); //It draws a rectangle in the page
         break;
       default:
         throw UnimplementedError("No widget for $selectedIndex");
@@ -106,6 +106,32 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       );
     });
+  }
+}
+
+class FavoritesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+
+    if (appState.favourites.isEmpty) {
+      return Center(
+        child: Text("No favourites yet"),
+      );
+    }
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Text("You have " "${appState.favourites.length} favourites:"),
+        ),
+        for (var pair in appState.favourites)
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text(pair.asLowerCase),
+          ),
+      ],
+    );
   }
 }
 
